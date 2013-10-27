@@ -1,10 +1,15 @@
 #define redes 0
 #if (redes > 0)
-  char* mySSID[redes]      = { "FORESTALPALOME" };
-  char* myPassword[redes]  = { "6c61757261"    };
-  char* wifiEncript[redes] = { WEP64       };
-  char* antennaExt[redes]  = { INT_ANT     }; //EXT_ANT
-#endif
+char* mySSID[redes]      = { "FORESTALPALOME" };
+char* myPassword[redes]  = { "6c61757261"    };
+char* wifiEncript[redes] = { WEP64       };
+char* antennaExt[redes]  = { INT_ANT     }; //EXT_ANT
+
+//char* mySSID[redes]      = { "Red1"        , "Red2"        , "Red3"             };
+//char* myPassword[redes]  = { "Pass1"      , "Pass2"       , "Pass3"            };
+//char* wifiEncript[redes] = { WPA2         , WPA2          , WPA2               };
+//char* antennaExt[redes]  = { INT_ANT      , INT_ANT       , INT_ANT            }; //EXT_ANT
+
 
 
 boolean connected;                  
@@ -260,7 +265,6 @@ boolean sckCheckRTC() {
 }
   
 boolean sckRTCadjust(char *time) {    
-  
     byte rtc[6] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     byte count = 0x00;
     byte data_count=0;
@@ -290,7 +294,7 @@ boolean sckRTCadjust(char *time) {
 }
 
 char* sckRTCtime() {
-      I2c.read(RTC_ADDRESS, (uint16_t)0x00, 7, false); //read 4 bytes
+      I2c.read(RTC_ADDRESS, (uint16_t)0x00, 7, false); //read 7 bytes
       uint8_t seconds = (I2c.receive() & 0x7F);
       uint8_t minutes = I2c.receive();
       uint8_t hours = I2c.receive();
