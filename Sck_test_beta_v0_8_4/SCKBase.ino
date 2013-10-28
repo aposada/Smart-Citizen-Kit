@@ -1,9 +1,10 @@
-#define redes 0
+#define redes 2
 #if (redes > 0)
-char* mySSID[redes]      = { "FORESTALPALOME" };
-char* myPassword[redes]  = { "6c61757261"    };
-char* wifiEncript[redes] = { WEP64       };
-char* antennaExt[redes]  = { INT_ANT     }; //EXT_ANT
+  char* mySSID[redes]      = { "CoolBeans"  , "CMX" , };
+  char* myPassword[redes]  = { "ILikeCheese" , "ibcncisco123"     };
+  char* wifiEncript[redes] = { WPA2  , WPA2     };
+  char* antennaExt[redes]  = { INT_ANT , INT_ANT     }; //EXT_AN
+#endif
 
 //char* mySSID[redes]      = { "Red1"        , "Red2"        , "Red3"             };
 //char* myPassword[redes]  = { "Pass1"      , "Pass2"       , "Pass3"            };
@@ -283,9 +284,9 @@ boolean sckRTCadjust(char *time) {
     if (data_count == 5)
     {
       #if F_CPU == 8000000
-          uint8_t DATA [8] = { rtc[5] | 0x80, rtc[4], rtc[3], 0x00 ,rtc[2], rtc[1], rtc[0], 0x00 } ;
+          uint8_t DATA [8] = { rtc[5] | 0x80, rtc[4], rtc[3], 0x08 ,rtc[2], rtc[1], rtc[0], 0x00 } ;
       #else
-          uint8_t DATA [8] = { rtc[5], rtc[4], rtc[3], 0x00 ,rtc[2], rtc[1], rtc[0], 0x00 } ;
+          uint8_t DATA [8] = { rtc[5], rtc[4], rtc[3], 0x08 ,rtc[2], rtc[1], rtc[0], 0x00 } ;
       #endif
       I2c.write(RTC_ADDRESS, 0x00, DATA, 8);   // COMMAND
       return true;

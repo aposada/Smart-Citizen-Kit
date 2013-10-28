@@ -57,6 +57,8 @@ void setup() {
     
 #endif   
 
+  //sckRTCadjust("2013-10-28 14:25:00");  // Ajuste RTC manualmente!
+
   /*init WiFly*/
 #if wiflyEnabled
   digitalWrite(AWAKE, HIGH); 
@@ -85,6 +87,7 @@ void setup() {
       while (!sckRTCadjust(sckWIFItime())&&(retry<5))
        {
          retry = retry + 1;
+         Serial.println(F("Downloading wifi UTC..."));
        }
      }
   }  
