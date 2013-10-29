@@ -53,11 +53,13 @@ void setup() {
     myFile.close();
   }
   
-  //sckRTCadjust("2013-10-24 08:00:00");  // Ajuste RTC manualmente!
+  sckRTCadjust("2013-10-24 08:00:00");  // Ajuste RTC manualmente!
     
 #endif   
 
   //sckRTCadjust("2013-10-28 14:25:00");  // Ajuste RTC manualmente!
+  //Serial.println(sckRTCtime());
+  
 
   /*init WiFly*/
 #if wiflyEnabled
@@ -115,6 +117,8 @@ void setup() {
 }
 
 void loop() {     
+
+  
 #if sensorEnabled  
     #if wiflyEnabled
       if (iphone_mode) // Telnet  (#data + *OPEN* detectado )

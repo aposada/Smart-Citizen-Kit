@@ -284,11 +284,13 @@ boolean sckRTCadjust(char *time) {
     if (data_count == 5)
     {
       #if F_CPU == 8000000
-          uint8_t DATA [8] = { rtc[5] | 0x80, rtc[4], rtc[3], 0x08 ,rtc[2], rtc[1], rtc[0], 0x00 } ;
+          uint8_t DATA [8] = {  rtc[5] | 0x80 , rtc[4], rtc[3], 0x08 ,rtc[2], rtc[1], rtc[0], 0x00 } ;
       #else
           uint8_t DATA [8] = { rtc[5], rtc[4], rtc[3], 0x08 ,rtc[2], rtc[1], rtc[0], 0x00 } ;
       #endif
+
       I2c.write(RTC_ADDRESS, 0x00, DATA, 8);   // COMMAND
+
       return true;
     }
     return false;   

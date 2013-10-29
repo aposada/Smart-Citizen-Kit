@@ -424,7 +424,7 @@ void sckGetMICS(){
   }
  
   
-  unsigned int sckGetNoise() {
+  uint32_t sckGetNoise() {
     unsigned long temp = 0;
     int n = 100;
     
@@ -433,9 +433,7 @@ void sckGetMICS(){
      delay(100);
     #endif
     
-    float mVRaw = (float)((average(S4))/1023.)*Vcc;
-    float dB = 0;
-    float GAIN = 100;
+    uint32_t mVRaw;
     
     #if F_CPU == 8000000 
  /*   
@@ -474,8 +472,7 @@ void sckGetMICS(){
     #endif
     
 
-    
-    mVRaw = (float)((float)(average(S4))/1023)*Vcc;
+    mVRaw = ((average(S4))/1023.)*Vcc;
     #if debuggSCK
       Serial.print("nOISE = ");
       Serial.print(mVRaw);
@@ -486,7 +483,7 @@ void sckGetMICS(){
     #endif
  
     #if F_CPU == 8000000 
-       return mVRaw*100;    
+       return (uint32_t)(mVRaw*100);    
     #else
        return dB*100;
     #endif
